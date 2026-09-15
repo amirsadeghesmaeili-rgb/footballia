@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پنل مدیریت | فوتبالیا</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #050505;
+      color: white;
+    }
+    header {
+      padding: 25px;
+      text-align: center;
+      background: #0b0b0b;
+      border-bottom: 1px solid #292929;
+    }
+    .logo {
+      color: #ffd000;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    .container {
+      width: min(850px, 92%);
+      margin: 35px auto;
+    }
+    .title {
+      color: #ffd000;
+      margin-bottom: 25px;
+    }
+    .panel {
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+    label {
+      display: block;
+      margin: 15px 0 8px;
+      color: #ccc;
+    }
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 14px;
+      background: #080808;
+      color: white;
+      border: 1px solid #333;
+      border-radius: 10px;
+      outline: none;
+      font-size: 15px;
+    }
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #ffd000;
+    }
+    textarea {
+      min-height: 180px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 20px;
+      padding: 14px 25px;
+      border: none;
+      border-radius: 12px;
+      background: #ffd000;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 15px;
+    }
+    button:hover {
+      box-shadow: 0 0 25px rgba(255,208,0,.3);
+      transform: translateY(-2px);
+    }
+    .back {
+      display: inline-block;
+      margin-top: 10px;
+      color: #aaa;
+      text-decoration: none;
+    }
+    .back:hover {
+      color: #ffd000;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">⚽ فوتبالیا</div>
+  <div>پنل مدیریت اخبار</div>
+</header>
+<div class="container">
+  <h1 class="title">📰 افزودن خبر جدید</h1>
+  <div class="panel">
+    <label>عنوان خبر</label>
+    <input
+      type="text"
+      id="title"
+      placeholder="مثلاً: انتقال بزرگ در فوتبال اروپا"
+    >
+    <label>دسته‌بندی</label>
+    <select id="category">
+      <option>🔥 مهم</option>
+      <option>⚽ فوتبال</option>
+      <option>🏆 مسابقات</option>
+      <option>👤 نقل‌وانتقالات</option>
+      <option>🌍 فوتبال جهان</option>
+    </select>
+    <label>متن خبر</label>
+    <textarea
+      id="content"
+      placeholder="متن کامل خبر را اینجا بنویس..."
+    ></textarea>
+    <label>لینک تصویر خبر</label>
+    <input
+      type="url"
+      id="image"
+      placeholder="https://..."
+    >
+    <button onclick="publishNews()">
+      🚀 انتشار خبر
+    </button>
+  </div>
+  <a class="back" href="index.html">
+    ← بازگشت به فوتبالیا
+  </a>
+</div>
+<script>
+  function publishNews() {
+    const title = document.getElementById("title").value.trim();
+    const content = document.getElementById("content").value.trim();
+    if (!title || !content) {
+      alert("لطفاً عنوان و متن خبر را وارد کن.");
+      return;
+    }
+    alert("خبر آماده انتشار است! 🚀");
+  }
+</script>
+</body>
+</html>
