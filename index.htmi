@@ -1,0 +1,59 @@
+<section id="players" class="page">
+
+  <div class="section-title">
+    <span>⭐</span>
+    <h2>ستاره‌های فوتبال</h2>
+  </div>
+
+  <div class="players-container">
+
+    <div class="player-card pro-card">
+      <div class="card-glow"></div>
+
+      <div class="player-image">
+        <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80" alt="Cristiano Ronaldo">
+      </div>
+
+      <div class="player-info">
+        <span class="player-number">07</span>
+        <h3>Cristiano Ronaldo</h3>
+        <p>🇵🇹 Portugal</p>
+        <span class="player-badge">⭐ LEGEND</span>
+      </div>
+    </div>
+
+
+    <div class="player-card pro-card">
+      <div class="card-glow"></div>
+
+      <div class="player-image">
+        <img src="https://images.unsplash.com/photo-1553778263-73a83bab9b0c?auto=format&fit=crop&w=600&q=80" alt="Lionel Messi">
+      </div>
+
+      <div class="player-info">
+        <span class="player-number">10</span>
+        <h3>Lionel Messi</h3>
+        <p>🇦🇷 Argentina</p>
+        <span class="player-badge">⭐ LEGEND</span>
+      </div>
+    </div>
+
+
+    <div class="player-card pro-card">
+      <div class="card-glow"></div>
+
+      <div class="player-image">
+        <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?auto=format&fit=crop&w=600&q=80" alt="Kylian Mbappé">
+      </div>
+
+      <div class="player-info">
+        <span class="player-number">09</span>
+        <h3>Kylian Mbappé</h3>
+        <p>🇫🇷 France</p>
+        <span class="player-badge">🔥 STAR</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
