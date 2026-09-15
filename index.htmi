@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>فوتبالیا</title>
+
   <link rel="stylesheet" href="style.css">
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -35,6 +40,8 @@
 <div id="searchResults"></div>
 
 <main>
+
+<!-- HOME -->
 
 <section id="home" class="page active">
 
@@ -85,6 +92,8 @@
 </section>
 
 
+<!-- NEWS -->
+
 <section id="news" class="page">
 
   <div class="section-title">
@@ -92,39 +101,22 @@
     <h2>آخرین اخبار</h2>
   </div>
 
-  <div class="news-container">
+  <!-- اخبار Supabase اینجا قرار می‌گیرند -->
+  <div id="newsContainer" class="news-container">
 
-    <article class="news-card">
-      <span class="news-tag">🔥 مهم</span>
-      <h3>دنیای فوتبال در آستانه یک مسابقه بزرگ</h3>
-      <p>
-        هواداران منتظر یکی از جذاب‌ترین مسابقات فوتبال هستند.
-      </p>
-      <small>امروز</small>
-    </article>
-
-    <article class="news-card">
-      <span class="news-tag">⚽ فوتبال</span>
-      <h3>ستاره‌های بزرگ آماده فصل جدید</h3>
-      <p>
-        رقابت بین بهترین بازیکنان دوباره داغ شده است.
-      </p>
-      <small>امروز</small>
-    </article>
-
-    <article class="news-card">
-      <span class="news-tag">🏆 رقابت</span>
-      <h3>قهرمان فصل چه تیمی خواهد بود؟</h3>
-      <p>
-        تیم‌های بزرگ برای رسیدن به جام آماده می‌شوند.
-      </p>
-      <small>دیروز</small>
-    </article>
+    <div class="news-card">
+      <span class="news-tag">⏳</span>
+      <h3>در حال دریافت اخبار...</h3>
+      <p>لطفاً چند لحظه صبر کنید.</p>
+      <small>فوتبالیا</small>
+    </div>
 
   </div>
 
 </section>
 
+
+<!-- MATCHES -->
 
 <section id="matches" class="page">
 
@@ -197,6 +189,8 @@
 </section>
 
 
+<!-- TABLE -->
+
 <section id="table" class="page">
 
   <div class="section-title">
@@ -248,6 +242,8 @@
 
 </section>
 
+
+<!-- PLAYERS -->
 
 <section id="players" class="page">
 
@@ -339,7 +335,190 @@
   ⚽ فوتبالیا © 2026
 </footer>
 
+
+<script>
+
+  // ==============================
+  // SUPABASE
+  // ==============================
+
+  const SUPABASE_URL = "https://zalrujwcdrpeyibaoxss.supabase.co";
+
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_kfRGV3Ugx0HtFfO_atcU_Q_tsKMm_BB";
+
+  const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+  // ==============================
+  // دریافت اخبار
+  // ==============================
+
+  async function loadNews() {
+
+    const container = document.getElementById("newsContainer");
+
+    if (!container) return;
+
+    container.innerHTML = `
+      <div class="news-card">
+        <span class="news-tag">⏳</span>
+        <h3>در حال دریافت اخبار...</h3>
+        <p>لطفاً چند لحظه صبر کنید.</p>
+        <small>فوتبالیا</small>
+      </div>
+    `;
+
+    const { data, error } = await supabaseClient
+      .from("news")
+      .select("*")
+      .eq("is_published", true)
+      .order("published_at", {
+        ascending: false
+      });
+
+    if (error) {
+
+      console.error("Supabase News Error:", error);
+
+      container.innerHTML = `
+        <div class="news-card">
+          <span class="news-tag">⚠️</span>
+          <h3>خطا در دریافت اخبار</h3>
+          <p>
+            اخبار فعلاً قابل دریافت نیستند.
+          </p>
+          <small>فوتبالیا</small>
+        </div>
+      `;
+
+      return;
+    }
+
+
+    // اگر هیچ خبری وجود نداشت
+
+    if (!data || data.length === 0) {
+
+      container.innerHTML = `
+        <div class="news-card">
+          <span class="news-tag">📰</span>
+          <h3>هنوز خبری منتشر نشده</h3>
+          <p>
+            اولین خبر فوتبالیا به‌زودی منتشر می‌شود.
+          </p>
+          <small>فوتبالیا</small>
+        </div>
+      `;
+
+      return;
+    }
+
+
+    // ساخت کارت‌های اخبار
+
+    container.innerHTML = data.map(news => {
+
+      const date = news.published_at
+        ? new Date(news.published_at).toLocaleDateString(
+            "fa-IR",
+            {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            }
+          )
+        : "امروز";
+
+
+      return `
+
+        <article class="news-card">
+
+          ${
+            news.image_url
+              ? `
+                <img
+                  src="${escapeHtml(news.image_url)}"
+                  alt="${escapeHtml(news.title)}"
+                  style="
+                    width:100%;
+                    border-radius:12px;
+                    margin-bottom:15px;
+                    display:block;
+                  "
+                >
+              `
+              : ""
+          }
+
+          <span class="news-tag">
+            ${escapeHtml(news.category || "⚽ فوتبال")}
+          </span>
+
+          <h3>
+            ${escapeHtml(news.title)}
+          </h3>
+
+          <p>
+            ${escapeHtml(news.content || "")}
+          </p>
+
+          <small>
+            📅 ${date}
+          </small>
+
+        </article>
+
+      `;
+
+    }).join("");
+
+  }
+
+
+  // ==============================
+  // جلوگیری از HTML ناخواسته
+  // ==============================
+
+  function escapeHtml(value) {
+
+    if (value === null || value === undefined) {
+      return "";
+    }
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+  // ==============================
+  // اجرای دریافت اخبار
+  // ==============================
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+      loadNews();
+
+    }
+  );
+
+</script>
+
+
+<!-- فایل JavaScript قبلی سایت -->
 <script src="script.js"></script>
 
 </body>
 </html>
+
