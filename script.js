@@ -729,3 +729,87 @@ function loadPlayers() {
       .map(createPlayerCard)
       .join("");
 }
+const players = [
+  { name: "Kylian Mbappé", club: "Real Madrid", number: 9, icon: "⚡" },
+  { name: "Vinícius Júnior", club: "Real Madrid", number: 7, icon: "🔥" },
+  { name: "Jude Bellingham", club: "Real Madrid", number: 5, icon: "⭐" },
+  { name: "Rodrygo", club: "Real Madrid", number: 11, icon: "⚽" },
+  { name: "Federico Valverde", club: "Real Madrid", number: 8, icon: "💥" },
+  { name: "Eduardo Camavinga", club: "Real Madrid", number: 6, icon: "🪄" },
+  { name: "Aurélien Tchouaméni", club: "Real Madrid", number: 14, icon: "🛡️" },
+  { name: "Arda Güler", club: "Real Madrid", number: 15, icon: "✨" },
+  { name: "Brahim Díaz", club: "Real Madrid", number: 21, icon: "⚡" },
+  { name: "Antonio Rüdiger", club: "Real Madrid", number: 22, icon: "🧱" },
+
+  { name: "Cristiano Ronaldo", club: "Al Nassr", number: 7, icon: "🐐" },
+  { name: "Lionel Messi", club: "Inter Miami", number: 10, icon: "🐐" },
+  { name: "Erling Haaland", club: "Manchester City", number: 9, icon: "🤖" },
+  { name: "Lamine Yamal", club: "Barcelona", number: 10, icon: "🌟" },
+  { name: "Ousmane Dembélé", club: "PSG", number: 10, icon: "⚡" },
+  { name: "Mohamed Salah", club: "Liverpool", number: 11, icon: "🔥" },
+  { name: "Harry Kane", club: "Bayern Munich", number: 9, icon: "🎯" },
+  { name: "Jamal Musiala", club: "Bayern Munich", number: 10, icon: "✨" },
+  { name: "Florian Wirtz", club: "Liverpool", number: 7, icon: "🎩" },
+  { name: "Bukayo Saka", club: "Arsenal", number: 7, icon: "🔥" },
+
+  { name: "Pedri", club: "Barcelona", number: 8, icon: "🧠" },
+  { name: "Robert Lewandowski", club: "Barcelona", number: 9, icon: "🎯" },
+  { name: "Raphinha", club: "Barcelona", number: 11, icon: "⚡" },
+  { name: "Kevin De Bruyne", club: "Napoli", number: 8, icon: "🎯" },
+  { name: "Virgil van Dijk", club: "Liverpool", number: 4, icon: "🛡️" },
+  { name: "William Saliba", club: "Arsenal", number: 2, icon: "🧱" },
+  { name: "Achraf Hakimi", club: "PSG", number: 2, icon: "💨" },
+  { name: "Khvicha Kvaratskhelia", club: "PSG", number: 7, icon: "🔥" },
+  { name: "Lautaro Martínez", club: "Inter", number: 10, icon: "🎯" },
+  { name: "Julián Álvarez", club: "Atlético Madrid", number: 19, icon: "⚡" },
+
+  { name: "Thibaut Courtois", club: "Real Madrid", number: 1, icon: "🧤" },
+  { name: "Dani Carvajal", club: "Real Madrid", number: 2, icon: "🛡️" },
+  { name: "Éder Militão", club: "Real Madrid", number: 3, icon: "🧱" },
+  { name: "David Alaba", club: "Real Madrid", number: 4, icon: "🛡️" },
+  { name: "Ferland Mendy", club: "Real Madrid", number: 23, icon: "💨" },
+  { name: "Fran García", club: "Real Madrid", number: 20, icon: "💨" },
+  { name: "Dean Huijsen", club: "Real Madrid", number: 24, icon: "🧱" },
+  { name: "Andriy Lunin", club: "Real Madrid", number: 13, icon: "🧤" },
+  { name: "Dani Ceballos", club: "Real Madrid", number: 19, icon: "🎯" },
+  { name: "Gonzalo García", club: "Real Madrid", number: 30, icon: "⚽" },
+
+  { name: "Cole Palmer", club: "Chelsea", number: 10, icon: "✨" },
+  { name: "Phil Foden", club: "Manchester City", number: 47, icon: "⚡" },
+  { name: "Rodri", club: "Manchester City", number: 16, icon: "🧠" },
+  { name: "Martin Ødegaard", club: "Arsenal", number: 8, icon: "🎩" },
+  { name: "Declan Rice", club: "Arsenal", number: 41, icon: "🛡️" },
+  { name: "Victor Osimhen", club: "Galatasaray", number: 45, icon: "🔥" },
+  { name: "Vincent Kompany", club: "Bayern Munich", number: 4, icon: "⭐" },
+  { name: "Rúben Dias", club: "Manchester City", number: 3, icon: "🧱" },
+  { name: "Bernardo Silva", club: "Manchester City", number: 20, icon: "✨" },
+  { name: "Antoine Griezmann", club: "Atlético Madrid", number: 7, icon: "🎯" }
+];
+
+function loadPlayers() {
+  const playersGrid = document.querySelector(".players-grid");
+
+  if (!playersGrid) return;
+
+  playersGrid.innerHTML = players.map(player => `
+    <article class="player-card">
+      <div class="player-number">${player.number}</div>
+
+      <div class="player-light"></div>
+
+      <div class="player-symbol">
+        ${player.icon}
+      </div>
+
+      <div class="player-details">
+        <span class="player-club">${player.club}</span>
+        <h3>${player.name}</h3>
+      </div>
+    </article>
+  `).join("");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadNews();
+  loadPlayers();
+});
