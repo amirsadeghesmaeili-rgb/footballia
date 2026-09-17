@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#03100a">
+<meta name="description" content="فوتبالیا؛ اخبار، بازی‌ها، جدول لیگ و بازیکنان فوتبال">
+
+<title>فوتبالیا | دنیای فوتبال</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="bg-effects">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="grid-bg"></div>
+</div>
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <a href="#home" class="logo">
+            <span>⚽</span>
+            <strong>فوتبالیا</strong>
+        </a>
+
+        <button
+            id="menuButton"
+            class="menu-button"
+            type="button"
+            aria-label="منو"
+        >
+            ☰
+        </button>
+
+        <nav id="mainNav" class="nav">
+
+            <a href="#home" class="active">
+                خانه
+            </a>
+
+            <a href="#news">
+                📰 اخبار
+            </a>
+
+            <a href="#matches">
+                🏟️ بازی‌ها
+            </a>
+
+            <a href="#table">
+                🏆 جدول
+            </a>
+
+            <a href="#players">
+                ⭐ بازیکنان
+            </a>
+
+            <a href="admin.html" class="admin-link">
+                ⚙️ مدیریت
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<!-- HERO -->
+
+<section id="home" class="hero section">
+
+    <div class="hero-text">
+
+        <div class="live-badge">
+            <span></span>
+            فوتبال زنده در فوتبالیا
+        </div>
+
+        <h1>
+            دنیای فوتبال
+            <span>اینجاست</span>
+        </h1>
+
+        <p>
+            اخبار، بازی‌ها، جدول لیگ و ستاره‌های فوتبال
+            را در یک جای جذاب و سریع دنبال کن.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#news" class="btn primary">
+                📰 اخبار
+            </a>
+
+            <a href="#matches" class="btn secondary">
+                🏟️ بازی‌ها
+            </a>
+
+        </div>
+
+        <div class="stats">
+
+            <div class="stat">
+                <b id="newsCount">0</b>
+                <span>خبر</span>
+            </div>
+
+            <div class="stat">
+                <b id="playerCount">50</b>
+                <span>بازیکن</span>
+            </div>
+
+            <div class="stat">
+                <b>50</b>
+                <span>ظرفیت بازیکنان</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-ball">
+
+        <div class="ring ring1"></div>
+        <div class="ring ring2"></div>
+        <div class="ring ring3"></div>
+
+        <div class="ball-glow"></div>
+
+        <div class="big-ball">
+            ⚽
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NEWS -->
+
+<section id="news" class="section">
+
+    <div class="section-title">
+
+        <div>
+            <span>📰 آخرین اخبار</span>
+            <h2>اخبار فوتبال</h2>
+            <p>
+                جدیدترین خبرهای منتشرشده در فوتبالیا
+            </p>
+        </div>
+
+        <b>NEWS</b>
+
+    </div>
+
+
+    <div class="search">
+
+        <span>🔎</span>
+
+        <input
+            id="searchInput"
+            type="search"
+            placeholder="جستجوی اخبار..."
+        >
+
+    </div>
+
+
+    <div id="newsGrid" class="news-grid"></div>
+
+
+    <div id="newsEmpty" class="empty" hidden>
+
+        <div>📰</div>
+
+        <h3>
+            هنوز خبری منتشر نشده
+        </h3>
+
+        <p>
+            اخبار از پنل مدیریت اضافه می‌شوند.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- MATCHES -->
+
+<section id="matches" class="section">
+
+    <div class="section-title">
+
+        <div>
+            <span>🏟️ مسابقات</span>
+            <h2>بازی‌های فوتبال</h2>
+            <p>
+                بازی‌های آینده، زنده و تمام‌شده
+            </p>
+        </div>
+
+        <b>MATCHES</b>
+
+    </div>
+
+
+    <div id="matchesGrid" class="matches-grid"></div>
+
+
+    <div id="matchesEmpty" class="empty" hidden>
+
+        <div>🏟️</div>
+
+        <h3>
+            هنوز بازی‌ای ثبت نشده
+        </h3>
+
+        <p>
+            بازی را از پنل مدیریت اضافه کن.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- TABLE -->
+
+<section id="table" class="section">
+
+    <div class="section-title">
+
+        <div>
+            <span>🏆 رتبه‌بندی</span>
+            <h2>جدول لیگ</h2>
+            <p>
+                وضعیت تیم‌ها و امتیازها
+            </p>
+        </div>
+
+        <b>TABLE</b>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>تیم</th>
+                    <th>بازی</th>
+                    <th>برد</th>
+                    <th>مساوی</th>
+                    <th>باخت</th>
+                    <th>امتیاز</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="leagueTableBody"></tbody>
+
+        </table>
+
+    </div>
+
+
+    <div id="tableEmpty" class="empty" hidden>
+
+        <div>🏆</div>
+
+        <h3>
+            جدول خالی است
+        </h3>
+
+        <p>
+            تیم‌ها را از پنل مدیریت اضافه کن.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- PLAYERS -->
+
+<section id="players" class="section">
+
+    <div class="section-title">
+
+        <div>
+            <span>⭐ ستاره‌ها</span>
+            <h2>بازیکنان</h2>
+            <p>
+                ۵۰ بازیکن فوتبالیا
+            </p>
+        </div>
+
+        <b>PLAYERS</b>
+
+    </div>
+
+
+    <div class="player-limit">
+        ⭐ حداکثر ۵۰ بازیکن
+    </div>
+
+
+    <div id="playersGrid" class="players-grid"></div>
+
+
+    <div id="playersEmpty" class="empty" hidden>
+
+        <div>⭐</div>
+
+        <h3>
+            بازیکنی پیدا نشد
+        </h3>
+
+        <p>
+            بازیکنان از Supabase دریافت می‌شوند.
+        </p>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+            <strong>⚽ فوتبالیا</strong>
+            <p>
+                خانه فوتبال برای عاشقان فوتبال.
+            </p>
+        </div>
+
+        <div class="footer-links">
+
+            <a href="#home">خانه</a>
+            <a href="#news">اخبار</a>
+            <a href="#matches">بازی‌ها</a>
+            <a href="#table">جدول</a>
+            <a href="#players">بازیکنان</a>
+            <a href="admin.html">مدیریت</a>
+
+        </div>
+
+    </div>
+
+    <small>
+        © 2026 Footballia
+    </small>
+
+</footer>
+
+
+<script src="script.js" defer></script>
+
+</body>
+</html>
